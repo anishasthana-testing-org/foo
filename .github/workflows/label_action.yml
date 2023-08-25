@@ -18,3 +18,11 @@ jobs:
               repo: context.repo.repo,
               labels: ["triage/needs-triage"]
             })
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v0.5.0
+        with:
+          project-url: https://github.com/orgs/anishasthana-testing-org/projects/1
+          github-token: ${{ secrets.TOKEN }}

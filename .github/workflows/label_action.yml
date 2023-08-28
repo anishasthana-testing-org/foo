@@ -5,13 +5,12 @@ on:
       - opened
 jobs:
   add_label:
+    name: Add label to project
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
-      - uses: actions/github-script@v6
-        with:
-          run: gh issue edit ${{ github.event.issue.number }} --add-label "triage/needs-triage"
+      - run: gh issue edit ${{ github.event.issue.number }} --add-label "triage/needs-triage"
   add-to-project:
     name: Add issue to project
     runs-on: ubuntu-latest

@@ -11,6 +11,8 @@ jobs:
       issues: write
     steps:
       - run: gh issue edit ${{ github.event.issue.number }} --add-label "triage/needs-triage"
+        env:
+            GH_TOKEN: ${{ github.token }}      
   add-to-project:
     name: Add issue to project
     runs-on: ubuntu-latest

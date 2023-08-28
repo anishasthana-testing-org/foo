@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
-          script: gh issue edit ${{ github.event.issue.number }} --add-label "triage/needs-triage"
+          run: gh issue edit ${{ github.event.issue.number }} --add-label "triage/needs-triage"
   add-to-project:
     name: Add issue to project
     runs-on: ubuntu-latest

@@ -17,3 +17,4 @@ jobs:
           gh pr merge ${{ pr-number }}
         env:
           GITHUB_TOKEN: ${{ secrets.ORG_MANAGEMENT_TOKEN }}
+        shell: bash

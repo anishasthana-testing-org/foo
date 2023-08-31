@@ -1,0 +1,18 @@
+name: Check Membership Pull Request
+on:
+  pull_request_review:
+jobs:
+  check-membership-approvals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run PR validation
+        id: pr-validation
+        run: exit 0
+      - name: Save PR number
+        if: steps.pr-validation.outcome == 'success'
+        run: |
+          gh workflow run merge-pr.yaml --repo github.com/anishasthana-testing-org/foo --ref ${{ github.ref }} --field pr-number ${{github.event.pull_request.number}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ORG_MANAGEMENT_TOKEN }}
+        shell: bash

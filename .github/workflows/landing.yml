@@ -1,0 +1,27 @@
+name: Receive PR Events
+
+on:
+  pull_request:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:        
+      - uses: actions/checkout@v2
+
+      # imitation of a build process
+      - name: Build
+        run: /bin/bash ./build.sh
+
+      - name: Save PR number
+        run: |
+          mkdir -p ./pr
+          echo ${{ github.event.number }} > ./pr/NR
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pr
+          path: pr/
